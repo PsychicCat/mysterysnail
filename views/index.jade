@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form#order(action="/order" method="post")
+    fieldset
+      legend Order Information
+      label(for="name") Name
+      input(type="text" name="name" id="name" required)
+      label(for="address") Address
+      input(type="text" name="address" id="address" required)
+      label(for="address2") Address Line 2
+      input(type="text" name="address2" id="address2" required)
+      label(for="city") City
+      input(type="text" name="city" id="city" required)
+      label(for="state") State
+      input(type="text" name="state" id="state" required)
+      label(for="zip") Zip / Postal Code
+      input(type="text" name="zip" id="zip" required)
+      label(for="country") Country
+      input(type="text" name="country" id="country" required)
+      label(for="message") Message
+      textarea(rows="4" name="message" id="message" cols="20")
+      button(type="submit") Submit
+

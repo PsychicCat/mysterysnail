@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#order {
+  margin: 0;
+  width: 300px;
+}
+
+#order input {
+  display: block;
+  width: 200px;
+}
+
+#order textarea {
+  display: block;
+  width: 200px;
+  position: right;
+}

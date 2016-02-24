@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1= title
+    h Thank you for your order!
+    p Please send 5 XMR to: #{order.integrated_address}
+    #address Address:
+        p= order.name
+        p= order.address
+        p= order.address2
+        p= order.city, order.state, order.zip
+        p= order.country
+    #message Message:
+        p= order.message
