@@ -14,8 +14,7 @@ router.post('/', function(req, res, next){
     Wallet.integratedAddress(order.payment_id).then(function(response){
         order.integrated_address = response.integrated_address;
         models.Order.create(order).then(function(result){
-            console.log(result);
-            res.render('order', {title: 'Mystery Snail', order: order});
+            res.render('order', {title: 'Mystery Snail', order: result.dataValues});
         });
     });
 });
