@@ -6,8 +6,10 @@ block content
   form#order(action="/order" method="post")
     fieldset
       legend Order Information
-      label(for="name") Name
-      input(type="text" name="name" id="name" required)
+      label(for="firstName") First Name
+      input(type="text" name="firstName" id="firstName")
+      label(for="lastName") Last Name
+      input(type="text" name="lastName" id="lastName")
       label(for="address") Address
       input(type="text" name="address" id="address" required)
       label(for="address2") Address Line 2
