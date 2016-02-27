@@ -1,24 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:200);
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-weight: 200;
 }
 
-a {
-  color: #00B7FF;
+h1, h2 {
+  text-align: center;
 }
 
-#order {
-  margin: 0;
-  width: 300px;
+* -- PURE FORM STYLES --
+* Style the form inputs and labels
+*/
+.pure-form label {
+  margin: 1em 0 0;
+  font-weight: bold;
+  font-size: 100%;
 }
 
-#order input {
-  display: block;
-  width: 200px;
+.pure-form input[type] {
+  border: 2px solid #ddd;
+  box-shadow: none;
+  font-size: 100%;
+  width: 100%;
+  margin-bottom: 1em;
 }
 
-#order textarea {
-  display: block;
-  width: 200px;
-  position: right;
+.pure-form textarea {
+  border: 2px solid #ddd;
+  box-shadow: none;
+  font-size: 100%;
+  width: 100%;
+  margin: 0 1em;
+}
+
+.pure-form button {
+  width: 100%;
+  margin: 0 1em;
 }
