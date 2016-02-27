@@ -3,7 +3,7 @@ extends layout
 block content
     h1= title
     h Thank you for your order!
-    p Please send 5 XMR to: #{order.integrated_address}
+    p Please send exactly #{order.amount} XMR to: #{order.integrated_address}
     #address Address:
         p= order.name
         p= order.address

@@ -12,6 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         country: DataTypes.STRING,
         message: DataTypes.STRING,
         payment_id: DataTypes.STRING,
+        amount: DataTypes.STRING,
         integrated_address: DataTypes.STRING
     });
     return Order;
