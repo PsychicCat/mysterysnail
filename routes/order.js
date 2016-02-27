@@ -19,9 +19,9 @@ router.post('/', function(req, res, next){
     });
 });
 
-//generate a 64 character hex string
+//generate a 16 character hex string for the payment ID
 function generatePaymentID(){
-    return distribution(engine, 15);
+    return distribution(engine, 16);
 }
 
 module.exports = router;
