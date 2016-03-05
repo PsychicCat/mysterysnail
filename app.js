@@ -10,6 +10,7 @@ var expressJwt = require('express-jwt');
 var routes = require('./routes/index');
 var order = require('./routes/order');
 var login = require('./routes/login');
+var dash = require('./routes/admin/dash');
 
 var app = express();
 
@@ -31,7 +32,8 @@ app.use('/login', login);
 app.use('/order', order);
 
 // initialize admin routes
-app.use('/admin/*', expressJwt({secret: process.env.SECRET || 'devsecret'}));
+//app.use('/admin/*', expressJwt({secret: process.env.SECRET || 'devsecret'}));
+app.use('/admin/dash', dash);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
