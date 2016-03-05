@@ -4,10 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
 
+// define routes
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var order = require('./routes/order');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -23,9 +25,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// initialize public routes
 app.use('/', routes);
-app.use('/users', users);
+app.use('/login', login);
 app.use('/order', order);
+
+// initialize admin routes
+app.use('/admin/*', expressJwt({secret: process.env.SECRET || 'devsecret'}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
