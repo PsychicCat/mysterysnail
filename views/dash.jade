@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1 Orders
+    table.pure-table.pure-table-bordered.pure-table-striped
+        thead
+            tr
+                th Order ID
+                th Recipient
+                th Status
+                th XMR Amount
+                th Order Details
+        tbody
+            each order in orders
+                tr
+                    td= order.dataValues.id
+                    td= order.dataValues.firstName + " " + order.dataValues.lastName
+                    td Awaiting Payment
+                    td= order.dataValues.amount
+                    td
+                        button.pure-button.pure-button-primary View
+
+
+
+

@@ -40,7 +40,8 @@ function generateIntegratedAddress(paymentID) {
 function calculatePrice() {
     return new Promise((resolve, reject) => {
            MoneroPrices.get('USD').then(function(result){
-            resolve(result.xmrBased * 2.5);
+            var amount = result.xmrBased * 2.5;
+            resolve(amount.toFixed(2));
         })
     });
 }

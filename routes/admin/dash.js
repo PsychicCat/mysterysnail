@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../../models');
+var Orders = require('../../models').Order;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    models.Order.findAll().then(function(orders){
-        res.send(orders);
+    //find all orders and render the admin dashboard
+    Orders.findAll().then(function(orders){
+        res.render('dash', {orders: orders});
     })
 });
 
