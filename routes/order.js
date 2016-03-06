@@ -5,9 +5,10 @@ var Wallet = require('../lib/wallet');
 var Random = require('random-js');
 var engine = Random.engines.nativeMath;
 var distribution = Random.hex(false);
-var models = require('../models');
+var Orders = require('../models').Order;
 var MoneroPrices = require('monero-prices');
 var Q = require('q');
+var padding = "000000000000000000000000000000000000000000000000";
 
 /* POST /order */
 router.post('/', function(req, res, next){
@@ -16,7 +17,8 @@ router.post('/', function(req, res, next){
     Q.spawn(function* () {
         order.integrated_address = yield generateIntegratedAddress(order.payment_id);
         order.amount = yield calculatePrice();
-        models.Order.create(order).then(function(result){
+        order.payment_id += padding;
+        Orders.create(order).then(function(result){
             res.render('order', {title: 'Mystery Snail', order: result.dataValues});
         })
     });
@@ -30,7 +32,7 @@ function generatePaymentID() {
 // generate an integrated address
 function generateIntegratedAddress(paymentID) {
     return new Promise((resolve, reject) => {
-        Wallet.integratedAddress().then(function(result){
+        Wallet.integratedAddress(paymentID).then(function(result){
             resolve(result.integrated_address);
         });
     });
@@ -41,7 +43,8 @@ function calculatePrice() {
     return new Promise((resolve, reject) => {
            MoneroPrices.get('USD').then(function(result){
             var amount = result.xmrBased * 2.5;
-            resolve(amount.toFixed(2));
+            amount = amount.toFixed(2);
+            resolve(amount * 1e12);
         })
     });
 }

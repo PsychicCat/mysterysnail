@@ -7,18 +7,26 @@ block content
             tr
                 th Order ID
                 th Recipient
-                th Status
+                th Payment Status
                 th XMR Amount
-                th Order Details
+                th Created On
+                th Details
         tbody
             each order in orders
                 tr
                     td= order.dataValues.id
                     td= order.dataValues.firstName + " " + order.dataValues.lastName
-                    td Awaiting Payment
-                    td= order.dataValues.amount
+                    if order.isPaid
+                        td
+                            button.pure-button.pure-button-primary
+                                a(href="http://moneroblocks.info/search/" + order.dataValues.tx_hash) CONFIRMED
+                    else
+                        td AWAITING PAYMENT
+                    td= order.dataValues.amount / 1e12
+                    td= order.createdAt
                     td
                         button.pure-button.pure-button-primary View
+
 
 
 

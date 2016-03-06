@@ -14,7 +14,7 @@
     "express-jwt": "^3.3.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^5.7.0",
-    "monero-nodejs": "^2.0.0",
+    "monero-nodejs": "^2.0.1",
     "monero-prices": "^1.0.0",
     "morgan": "~1.6.1",
     "pg": "^4.4.6",
