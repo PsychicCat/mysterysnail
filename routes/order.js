@@ -8,6 +8,7 @@ var distribution = Random.hex(false);
 var Orders = require('../models').Order;
 var MoneroPrices = require('monero-prices');
 var Q = require('q');
+var uuid = require('node-uuid');
 var padding = "000000000000000000000000000000000000000000000000";
 
 /* GET /order */
@@ -28,6 +29,7 @@ router.post('/', function(req, res, next){
     order.country = req.sanitize(order.country);
     order.message = req.sanitize(order.message);
     order.payment_id = generatePaymentID();
+    order.uuid = uuid.v4();
 
     Q.spawn(function* () {
         order.integrated_address = yield generateIntegratedAddress(order.payment_id);

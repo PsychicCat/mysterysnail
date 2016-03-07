@@ -14,7 +14,7 @@ block content
         tbody
             each order in orders
                 tr
-                    td= order.dataValues.id
+                    td= order.dataValues.uuid
                     td= order.dataValues.firstName + " " + order.dataValues.lastName
                     if order.isPaid
                         td

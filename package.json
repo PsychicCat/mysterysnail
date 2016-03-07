@@ -19,6 +19,7 @@
     "monero-nodejs": "^2.0.1",
     "monero-prices": "^1.0.0",
     "morgan": "~1.6.1",
+    "node-uuid": "^1.4.7",
     "pg": "^4.4.6",
     "q": "^1.4.1",
     "random-js": "^1.0.8",

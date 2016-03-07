@@ -22,7 +22,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-models.sequelize.sync().then(function(){
+models.sequelize.sync({force: true}).then(function(){
   server.listen(port, function(){
     debug('Express server listening on port ' + server.address().port);
   })
@@ -32,13 +32,13 @@ models.sequelize.sync().then(function(){
  * Create initial admin user
  */
 
-models.User.find({username: 'test'}).then(function(admin){
-  if(!admin){
-    models.User.create({username: 'test', password: 'test'}).then(function(user){
-      console.log(user);
-    });
-  }
-});
+//models.User.find({username: 'test'}).then(function(admin){
+//  if(!admin){
+//    models.User.create({username: 'test', password: 'test'}).then(function(user){
+//      console.log(user);
+//    });
+//  }
+//});
 
 /**
  * Listen on provided port, on all network interfaces.

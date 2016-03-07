@@ -1,14 +1,17 @@
 extends layout
 
 block content
-    h1= title
-    h2 Thank you for your order!
-    p Please send exactly #{order.amount / 1e12} XMR to: #{order.integrated_address}
-    #address Address:
+    h1 Thank you for your order!
+    p Please send exactly&nbsp
+        span#xmrAmount #{order.amount / 1e12} XMR to:&nbsp
+        span#xmrAddress #{order.integrated_address}
+    #orderDetails Address:
         p= order.name
         p= order.address
         p= order.address2
         p= order.city, order.state, order.zip
         p= order.country
-    #message Message:
-        p= order.message
+        p Message: #{order.message}
+        p Tracking Number: #{order.uuid}
+        a.pure-button(href="/cancel/" + order.uuid) Cancel Order
+

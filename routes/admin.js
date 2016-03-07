@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var Orders = require('../../models').Order;
-var getPaymentIds = require('../../lib/checkPayments');
-var updateOrder = require('../../lib/updateOrderStatus');
+var Orders = require('../models/index').Order;
+var getPaymentIds = require('../lib/checkPayments');
+var updateOrder = require('../lib/updateOrderStatus');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     //find all orders and render the admin dashboard
     Orders.findAll().then(function(orders){
-        res.render('orders', {orders: orders, user: req.user});
+        res.render('admin', {orders: orders, user: req.user});
     })
 });
 

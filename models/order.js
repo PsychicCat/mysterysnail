@@ -19,7 +19,8 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         },
         tx_hash: DataTypes.STRING,
-        block_height: DataTypes.STRING
+        block_height: DataTypes.STRING,
+        uuid: DataTypes.STRING
     });
     return Order;
 };

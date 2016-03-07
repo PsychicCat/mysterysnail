@@ -11,8 +11,10 @@ var jwt = require('express-jwt');
 // define routes
 var routes = require('./routes/index');
 var order = require('./routes/order');
-var admin = require('./routes/login');
-var orders = require('./routes/admin/orders');
+var track = require('./routes/track');
+var cancel = require('./routes/cancel');
+var login = require('./routes/login');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -31,25 +33,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // initialize public routes
 app.use('/', routes);
-app.use('/admin', admin);
+app.use('/login', login);
 app.use('/order', order);
+app.use('/track', track);
+app.use('/cancel', cancel);
 
 // setup admin authentication
-app.use('/admin/*', jwt({
-  secret: process.env.JWT_SECRET,
-  getToken: function fromCookie (req) {
-    if(req.cookies.admin){
-      return req.cookies.admin;
-    }
-    return null;
-  }
-}), function(err, req, res, next){
-  if(err.status === 401){
-    res.redirect('/admin')
-  }
-});
+
 // initialize admin routes
-app.use('/admin/orders', orders);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

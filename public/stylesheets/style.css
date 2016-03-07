@@ -65,13 +65,18 @@ h1, h2 {
 
 /* CONTENT STYLES */
 .content-wrapper {
-  margin-top: 40px;
+  margin: 1em auto;
 }
 
 .content {
   padding: 1em;
+  margin: 0 auto;
 }
 
 .footer {
   background: #111;
+}
+
+table {
+  margin: auto;
 }
