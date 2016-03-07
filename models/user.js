@@ -16,12 +16,16 @@ module.exports = function(sequelize, DataTypes) {
         },
         password: DataTypes.STRING
     }, {
+        hooks: {
+            beforeCreate: function(user, options) {
+                return _generateHash(user.password).then(function(hash){
+                    user.password = hash;
+                })
+            }
+        },
         instanceMethods: {
-           generateHash: function(password) {
-               return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
-           },
-           comparePassword: function(password) {
-               return bcrypt.compareSync(password, this.password);
+           comparePassword: function(password, cb) {
+                cb(null, bcrypt.compareSync(password, this.password));
            }
         },
         classMethods: {
@@ -41,11 +45,12 @@ module.exports = function(sequelize, DataTypes) {
                                 return callback(err);
                             } else if (isMatch) {
                                 var user = {
-                                    username: instance.username
+                                    username: instance.username,
+                                    admin: true
                                 };
                                 //return the jwt
                                 var token = jsonwebtoken.sign(user, process.env.SECRET || 'devsecret', {
-                                    expiresIn: 1440 // expires in 24 hours
+                                    expiresIn: 1 // expires in 24 hours
                                 });
                                 return callback(null, token, user);
                             } else {
@@ -59,3 +64,10 @@ module.exports = function(sequelize, DataTypes) {
     });
     return userSchema;
 };
+
+// generate hashed password
+function _generateHash(password) {
+    return new Promise((resolve, reject) => {
+        resolve(bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null))
+    });
+}

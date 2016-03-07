@@ -8,7 +8,7 @@ var updateOrder = require('../../lib/updateOrderStatus');
 router.get('/', function(req, res, next) {
     //find all orders and render the admin dashboard
     Orders.findAll().then(function(orders){
-        res.render('dash', {orders: orders});
+        res.render('orders', {orders: orders, user: req.user});
     })
 });
 

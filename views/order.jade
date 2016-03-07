@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1= title
-    h Thank you for your order!
+    h2 Thank you for your order!
     p Please send exactly #{order.amount / 1e12} XMR to: #{order.integrated_address}
     #address Address:
         p= order.name

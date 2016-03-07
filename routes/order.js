@@ -10,10 +10,25 @@ var MoneroPrices = require('monero-prices');
 var Q = require('q');
 var padding = "000000000000000000000000000000000000000000000000";
 
+/* GET /order */
+router.get('/', function(req, res, next){
+    res.render('form');
+});
+
 /* POST /order */
 router.post('/', function(req, res, next){
     var order = req.body;
+    order.firstName = req.sanitize(order.firstName);
+    order.lastName = req.sanitize(order.lastName);
+    order.address = req.sanitize(order.address);
+    order.address2 = req.sanitize(order.address2);
+    order.city = req.sanitize(order.city);
+    order.state = req.sanitize(order.state);
+    order.zip = req.sanitize(order.zip);
+    order.country = req.sanitize(order.country);
+    order.message = req.sanitize(order.message);
     order.payment_id = generatePaymentID();
+
     Q.spawn(function* () {
         order.integrated_address = yield generateIntegratedAddress(order.payment_id);
         order.amount = yield calculatePrice();
@@ -23,6 +38,12 @@ router.post('/', function(req, res, next){
         })
     });
 });
+
+
+/**
+ * Helper Functions for processing orders
+ *
+ */
 
 // generate a 16 character hex string for the payment ID
 function generatePaymentID() {
