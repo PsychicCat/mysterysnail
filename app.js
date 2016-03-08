@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
+var updateOrders = require('./lib/updateOrderStatus');
 
 // define routes
 var routes = require('./routes/index');
@@ -42,6 +43,9 @@ app.use('/cancel', cancel);
 
 // initialize admin routes
 app.use('/admin', admin);
+
+//check for new payments every minute and update status
+var updateOrderStatus = setInterval(updateOrders, 60000);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
