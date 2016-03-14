@@ -23,9 +23,13 @@ router.post('/', function(req, res, next){
     order.uuid = uuid.v4();
 
     Q.spawn(function* () {
+        // generate the integrated address for the unique payment id
         order.integrated_address = yield generateIntegratedAddress(order.payment_id);
+        // calculate the exchange rate of order based on $2.50 USD
         order.amount = yield calculatePrice();
+        // add zero padding to make the special payment id compatible for searching
         order.payment_id += padding;
+        // save order to database and respond with the rendered page
         Orders.create(order).then(function(result){
             res.render('order', {title: 'Mystery Snail', order: result.dataValues});
         })
@@ -65,7 +69,7 @@ function generateIntegratedAddress(paymentID) {
 function calculatePrice() {
     return new Promise((resolve, reject) => {
            MoneroPrices.get('USD').then(function(result){
-            var amount = result.xmrBased * 0.5;
+            var amount = result.xmrBased * 2.5;
             amount = amount.toFixed(2);
             resolve(amount * 1e12);
         })
