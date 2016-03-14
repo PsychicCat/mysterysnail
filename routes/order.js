@@ -18,16 +18,7 @@ router.get('/', function(req, res, next){
 
 /* POST /order */
 router.post('/', function(req, res, next){
-    var order = req.body;
-    order.firstName = req.sanitize(order.firstName);
-    order.lastName = req.sanitize(order.lastName);
-    order.address = req.sanitize(order.address);
-    order.address2 = req.sanitize(order.address2);
-    order.city = req.sanitize(order.city);
-    order.state = req.sanitize(order.state);
-    order.zip = req.sanitize(order.zip);
-    order.country = req.sanitize(order.country);
-    order.message = req.sanitize(order.message);
+    var order = sanitize(req);
     order.payment_id = generatePaymentID();
     order.uuid = uuid.v4();
 
@@ -46,6 +37,15 @@ router.post('/', function(req, res, next){
  * Helper Functions for processing orders
  *
  */
+
+// sanitize request body
+function sanitize(req){
+    var order = req.body;
+    for(var prop in order){
+        order[prop] = req.sanitize(order[prop]);
+    }
+    return order;
+}
 
 // generate a 16 character hex string for the payment ID
 function generatePaymentID() {
