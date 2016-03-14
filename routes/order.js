@@ -10,6 +10,7 @@ var MoneroPrices = require('monero-prices');
 var Q = require('q');
 var uuid = require('node-uuid');
 var padding = "000000000000000000000000000000000000000000000000";
+var sanitize = require('../lib/sanitizer');
 
 /* GET /order */
 router.get('/', function(req, res, next){
@@ -41,15 +42,6 @@ router.post('/', function(req, res, next){
  * Helper Functions for processing orders
  *
  */
-
-// sanitize request body
-function sanitize(req){
-    var order = req.body;
-    for(var prop in order){
-        order[prop] = req.sanitize(order[prop]);
-    }
-    return order;
-}
 
 // generate a 16 character hex string for the payment ID
 function generatePaymentID() {
