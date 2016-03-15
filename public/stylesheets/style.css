@@ -71,8 +71,9 @@ h1, h2 {
 }
 
 .content {
-  padding: 1em;
-  margin: 0 auto;
+  background-color: whitesmoke;
+  margin: 0 4em;
+  padding: 1em 2em;
 }
 
 .footer {
@@ -81,5 +82,9 @@ h1, h2 {
 
 table {
   margin: auto;
+}
+
+#submit {
+  margin-top: 1em;
 }
 
