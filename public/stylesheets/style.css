@@ -72,8 +72,10 @@ h1, h2 {
 
 .content {
   background-color: whitesmoke;
-  margin: 0 4em;
-  padding: 1em 2em;
+  margin: 3.1em 5%;
+  padding: 0.5em 2em;
+  border-radius: 2px;
+  height: 100%;
 }
 
 .footer {

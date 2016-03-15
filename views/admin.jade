@@ -1,30 +1,30 @@
 extends layout
 
 block content
-    h1 Orders
-    table.pure-table.pure-table-bordered.pure-table-striped
-        thead
-            tr
-                th Order ID
-                th Recipient
-                th Payment Status
-                th XMR Amount
-                th Created On
-                th Details
-        tbody
-            each order in orders
+    .content
+        table.pure-table.pure-table-bordered.pure-table-striped
+            thead
                 tr
-                    td= order.dataValues.uuid
-                    td= order.dataValues.firstName + " " + order.dataValues.lastName
-                    if order.isPaid
+                    th Order ID
+                    th Recipient
+                    th Payment Status
+                    th XMR Amount
+                    th Created On
+                    th Details
+            tbody
+                each order in orders
+                    tr
+                        td= order.dataValues.uuid
+                        td= order.dataValues.firstName + " " + order.dataValues.lastName
+                        if order.isPaid
+                            td
+                                a.pure-button.pure-button-primary(href="http://moneroblocks.info/search/" + order.dataValues.tx_hash) CONFIRMED
+                        else
+                            td AWAITING PAYMENT
+                        td= order.dataValues.amount / 1e12
+                        td= order.createdAt
                         td
-                            a.pure-button.pure-button-primary(href="http://moneroblocks.info/search/" + order.dataValues.tx_hash) CONFIRMED
-                    else
-                        td AWAITING PAYMENT
-                    td= order.dataValues.amount / 1e12
-                    td= order.createdAt
-                    td
-                        a.pure-button(href="/admin/" + order.uuid) View
+                            a.pure-button(href="/admin/" + order.uuid) View
 
 
 
