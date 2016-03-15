@@ -32,17 +32,21 @@ app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// initialize public routes
+// initialize routes
 app.use('/', routes);
 app.use('/login', login);
 app.use('/order', order);
 app.use('/track', track);
 app.use('/cancel', cancel);
-
-// setup admin authentication
-
-// initialize admin routes
-app.use('/admin', admin);
+app.use('/admin', jwt({
+  secret: process.env.JWT_SECRET,
+  getToken: function fromCookie (req){
+    if(req.cookies && req.cookies.admin){
+      return req.cookies.admin;
+    }
+    return null;
+  }
+}), admin);
 
 //check for new payments every minute and update status
 var updateOrderStatus = setInterval(updateOrders, 60000);

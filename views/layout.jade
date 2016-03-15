@@ -14,5 +14,8 @@ html
           a.pure-menu-link(href="/order") Create
         li.pure-menu-item
           a.pure-menu-link(href="/track") Track
+        if user
+          li.pure-menu-item
+            a.pure-menu-link(href="/logout") Logout
     .content-wrapper
         block content

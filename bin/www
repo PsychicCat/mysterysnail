@@ -32,13 +32,11 @@ models.sequelize.sync().then(function(){
  * Create initial admin user
  */
 
-//models.User.find({username: 'test'}).then(function(admin){
-//  if(!admin){
-//    models.User.create({username: 'test', password: 'test'}).then(function(user){
-//      console.log(user);
-//    });
-//  }
-//});
+models.User.find({username: 'test'}).then(function(admin){
+  if(!admin){
+    models.User.create({username: 'test', password: 'test'});
+  }
+});
 
 /**
  * Listen on provided port, on all network interfaces.

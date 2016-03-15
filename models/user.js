@@ -49,8 +49,8 @@ module.exports = function(sequelize, DataTypes) {
                                     admin: true
                                 };
                                 //return the jwt
-                                var token = jsonwebtoken.sign(user, process.env.SECRET || 'devsecret', {
-                                    expiresIn: 1 // expires in 24 hours
+                                var token = jsonwebtoken.sign(user, process.env.JWT_SECRET, {
+                                    expiresIn: 1440 // expires in 24 hours
                                 });
                                 return callback(null, token, user);
                             } else {
