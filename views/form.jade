@@ -1,19 +1,36 @@
 extends layout
 
 block content
-    .content-wrapper
-        form#order.pure-form.pure-g(action="/order" method="post")
-            .pure-u-1-3
-                input(type="text" name="firstName" placeholder="First Name" required)
-                input(type="text" name="lastName" id="lastName" placeholder="Last Name")
-                input(type="text" name="address" id="address" placeholder="Address" required)
-                input(type="text" name="address2" id="address2" placeholder="Address Line 2")
-                input(type="text" name="city" id="city" placeholder="City" required)
-                input(type="text" name="state" id="state" placeholder="State" required)
-                input(type="text" name="zip" id="zip" placeholder="ZIP / Postal Code" required)
-                input(type="text" name="country" id="country" placeholder="Country" required)
-            .pure-u-2-3
-                textarea(form="order" name="message" id="message" rows="22" placeholder="Your Message")
-            .pure-u-1-3
-            .pure-u-2-3
-                button.pure-button.pure-button-primary(type="submit") Submit
+    form#order.pure-form.pure-form-stacked(action="/order" method="post")
+        fieldset
+            legend Destination Address
+            .pure-g
+                .pure-u-1.pure-u-md-1-2
+                    label(for="firstName") First Name
+                    input.pure-u-23-24(type="text" name="firstName" placeholder="First Name" id="firstName" required)
+                .pure-u-1.pure-u-md-1-2
+                    label(for="lastName") Last Name
+                    input.pure-u-23-24(type="text" name="lastName" id="lastName" placeholder="Last Name")
+                .pure-u-1.pure-u-md-1-2
+                    label(for="address") Address
+                    input.pure-u-23-24(type="text" name="address" id="address" placeholder="Address" required)
+                .pure-u-1.pure-u-md-1-2
+                    label(for="address2") Address Line 2
+                    input.pure-u-23-24(type="text" name="address2" id="address2" placeholder="Address Line 2")
+                .pure-u-1.pure-u-md-1-4
+                    label(for="City") City
+                    input.pure-u-23-24.pure-u-md-22-24(type="text" name="city" id="city" placeholder="City" required)
+                .pure-u-1.pure-u-md-1-4
+                    label(for="State") State
+                    input.pure-u-23-24.pure-u-md-22-24(type="text" name="state" id="state" placeholder="State" required)
+                .pure-u-1.pure-u-md-1-4
+                    label(for="zip") ZIP / Postal Code
+                    input.pure-u-23-24.pure-u-md-22-24(type="text" name="zip" id="zip" placeholder="ZIP / Postal Code" required)
+                .pure-u-1.pure-u-md-1-4
+                    label(for="country") Country
+                    input.pure-u-23-24.pure-u-md-22-24(type="text" name="country" id="country" placeholder="Country" required)
+                .pure-u-1
+                    label(for="message") Message
+                    textarea.pure-u-23-24(form="order" name="message" id="message" rows="15" placeholder="Your Message")
+                .pure-u-1
+                    button.pure-button.pure-button-primary(type="submit") Submit

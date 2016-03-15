@@ -1,9 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
-body {
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
-  font-weight: 200;
-  font-size: 100%;
+}
+
+body {
   background-color: #1F8A70;
 }
 
@@ -65,7 +67,7 @@ h1, h2 {
 
 /* CONTENT STYLES */
 .content-wrapper {
-  margin: 1em auto;
+  margin: 2em auto;
 }
 
 .content {
@@ -80,3 +82,4 @@ h1, h2 {
 table {
   margin: auto;
 }
+
