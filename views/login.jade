@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    h1= title
-    h2 Admin Login
-    form#login.pure-form(action="/login" method="post")
-        label(for="username") Username
-        input(type="text" name="username" id="username")
-        label(for="password") Password
-        input(type="password" name="password" id="password")
-        button.pure-button.pure-button-primary(type="submit") Login
-    if error
-        p.error= error.message
+    h1 Admin Login
+    .content
+        form#login.pure-form.pure-form-stacked(action="/login" method="post")
+            label(for="username") Username
+            input(type="text" name="username" id="username")
+            label(for="password") Password
+            input(type="password" name="password" id="password")
+            button.pure-button.pure-button-primary(type="submit") Login
+        if error
+            p.error= error.message

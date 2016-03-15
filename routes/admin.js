@@ -5,13 +5,23 @@ var getPaymentIds = require('../lib/checkPayments');
 var updateOrder = require('../lib/updateOrderStatus');
 var jwt = require('express-jwt');
 
-/* GET home page. */
+/* GET /admin page. */
 router.get('/', function(req, res, next) {
-    console.log(req.user);
     //find all orders and render the admin dashboard
-    Orders.findAll().then(function(orders){
-        res.render('admin', {orders: orders, user: req.user});
-    })
+    if(req.user && req.user.admin){
+        Orders.findAll().then(function(orders){
+            res.render('admin', {orders: orders, user: req.user});
+        })
+    } else {
+        res.redirect('/login');
+    }
+});
+
+/* GET /admin/:orderID */
+router.get('/:uuid', function(req, res, next){
+    Orders.find({where: {uuid: req.params.uuid}}).then(function(order){
+        res.json(order.dataValues);
+    });
 });
 
 

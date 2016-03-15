@@ -15,6 +15,7 @@ var order = require('./routes/order');
 var track = require('./routes/track');
 var cancel = require('./routes/cancel');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var admin = require('./routes/admin');
 
 var app = express();
@@ -32,21 +33,26 @@ app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// initialize routes
-app.use('/', routes);
-app.use('/login', login);
-app.use('/order', order);
-app.use('/track', track);
-app.use('/cancel', cancel);
-app.use('/admin', jwt({
+// protect admin routes
+app.use(jwt({
   secret: process.env.JWT_SECRET,
-  getToken: function fromCookie (req){
-    if(req.cookies && req.cookies.admin){
+  credentialsRequired: false,
+  getToken: function fromCookie(req) {
+    if(req.cookies && req.cookies.admin) {
       return req.cookies.admin;
     }
     return null;
   }
-}), admin);
+}).unless({path: ['/', '/order', '/track', '/cancel']}));
+
+// initialize routes
+app.use('/', routes);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/order', order);
+app.use('/track', track);
+app.use('/cancel', cancel);
+app.use('/admin', admin);
 
 //check for new payments every minute and update status
 var updateOrderStatus = setInterval(updateOrders, 60000);

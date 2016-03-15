@@ -3,7 +3,7 @@ var router = express.Router();
 var Users = require('../models').User;
 var jwt = require('express-jwt');
 
-/* GET /admin */
+/* GET /login */
 router.get('/', function(req, res, next) {
     if(!req.user){
         res.render('login');
@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     }
 });
 
-/* POST /admin */
+/* POST /login */
 router.post('/', function(req, res, next){
     if(req.body.username && req.body.password){
         req.body.username = req.sanitize(req.body.username);
