@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "engines": {
+    "node": "5.8.0",
+    "npm": "3.7.3"
+  },
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "~1.13.2",
