@@ -10,11 +10,15 @@ module.exports = function(sequelize, DataTypes) {
         state: DataTypes.STRING,
         zip: DataTypes.STRING,
         country: DataTypes.STRING,
-        message: DataTypes.STRING,
+        message: DataTypes.TEXT,
         payment_id: DataTypes.STRING,
         amount: DataTypes.BIGINT,
         integrated_address: DataTypes.STRING,
         isPaid: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        isShipped: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },

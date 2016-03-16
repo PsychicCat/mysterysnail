@@ -18,7 +18,7 @@ block content
                         td= order.dataValues.firstName + " " + order.dataValues.lastName
                         if order.isPaid
                             td
-                                a.pure-button.pure-button-primary(href="http://moneroblocks.info/search/" + order.dataValues.tx_hash) CONFIRMED
+                                a.pure-button.pure-button-primary(href="http://moneroblocks.info/search/" + order.tx_hash) CONFIRMED
                         else
                             td AWAITING PAYMENT
                         td= order.dataValues.amount / 1e12

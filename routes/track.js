@@ -11,7 +11,7 @@ router.get('/', function(req, res, next){
 router.post('/', function(req, res, next){
     var id = req.sanitize(req.body.uuid).trim();
     Orders.find({where: {uuid: id}}).then(function(result){
-        res.json(result.dataValues);
+        res.render('order', {order: result.dataValues});
     });
 });
 

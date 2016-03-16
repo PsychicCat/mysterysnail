@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 /* GET /admin/:orderID */
 router.get('/:uuid', function(req, res, next){
     Orders.find({where: {uuid: req.params.uuid}}).then(function(order){
-        res.json(order.dataValues);
+        res.render('order', {order: order.dataValues, user: req.user});
     });
 });
 
