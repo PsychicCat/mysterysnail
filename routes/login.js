@@ -20,7 +20,7 @@ router.post('/', function(req, res, next){
 
         Users.getAuthenticated(req.body, function(err, token, user) {
             if(err) {
-                console.log("error", err);
+                console.log(err);
                 res.render('login', {error: err});
             } else {
                 res.cookie('admin', token, {httpOnly: true});

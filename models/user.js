@@ -16,9 +16,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         password: DataTypes.STRING
     }, {
+        timestamps: false,
         hooks: {
             beforeCreate: function(user, options) {
                 return _generateHash(user.password).then(function(hash){
+                    console.log(hash);
                     user.password = hash;
                 })
             }
