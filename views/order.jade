@@ -3,34 +3,35 @@ extends layout
 block content
     h1 Order Details:
     .content.orderdetails
-        .pure-g
-            .pure-u-1
-                p Please send:
-                    span#xmrAmount #{order.amount / 1e12}
-                    | XMR to:
-                    span#xmrAddress #{order.integrated_address}
-            .pure-u-1.pure-u-md-1-2
-                form.pure-form.pure-form-stacked
-                    label(for="address") Destination Address:
-                    textarea.pure-u-23-24(id="address" readonly) #{order.firstName + order.lastName + "\n" + order.address + "\n" + order.address2 + "\n" + order.city + ", " + order.state + " " + order.zip + "\n" + order.country}
-                    label(for="tracking") Tracking Number:
-                    input.pure-u-23-24.pure-u-md-20-24(type="text" value=order.uuid readonly)
-            .pure-u-1.pure-u-md-1-2
-                form.pure-form.pure-form-stacked
-                    label(for="message") Message:
-                    textarea.pure-u-23-24(id="message" readonly)= order.message
-                if (order.isPaid)
-                    p Payment Status:
-                        a(href="http://moneroblocks.info/search/" + order.tx_hash).pure-button.pure-button-primary CONFIRMED
-                else
-                    p Payment Status: Awaiting Payment
-                if (order.isShipped)
-                    p Shipping Status: Order Sent
-                else
-                    p Shipping Status: Pending
-            .pure-u-1
-                if(user)
-                    a.pure-button.pure-u-1.pure-button-primary(href="/ship/" + order.uuid) Ship Order
-                if(!user)
-                    a.pure-button.pure-u-1.button-warning(href="/cancel/" + order.uuid) Cancel Order
+        form#status.pure-form.pure-form-stacked(action="/edit" method="put")
+            fieldset
+                legend Please confirm order details and send payment:
+                .pure-g
+                    .pure-u-1
+                        label(for="amount") XMR Amount:
+                        input.pure-u-23-24(id="amount" value=order.amount / 1e12 readonly)
+                        label(for="xmraddress") Payment Address:
+                        input.pure-u-23-24(id="xmraddress" value=order.integrated_address readonly)
+                    .pure-u-1.pure-u-md-1-2
+                            label(for="address") Destination Address:
+                            textarea.pure-u-23-24(id="address" readonly) #{order.firstName + " " + order.lastName + "\n" + order.address + "\n" + order.address2 + "\n" + order.city + ", " + order.state + " " + order.zip + "\n" + order.country}
+                            label(for="orderid") Order ID:
+                            input.pure-u-23-24.pure-u-md-20-24(type="text" id="orderid" value=order.uuid readonly)
+                    .pure-u-1.pure-u-md-1-2
+                            label(for="message") Message:
+                            textarea.pure-u-23-24(id="message" readonly)= order.message
+                            if (order.isPaid)
+                                p Payment Status:
+                                    a(href="http://moneroblocks.info/search/" + order.tx_hash).pure-button.pure-button-primary CONFIRMED
+                            else
+                                p Payment Status: Awaiting Payment
+                            if (order.isShipped)
+                                p Shipping Status: Order Sent
+                            else
+                                p Shipping Status: Pending
+                    .pure-u-1
+                        if(user)
+                            a.pure-button.pure-u-1.pure-button-primary(href="/ship/" + order.uuid) Ship Order
+                        if(!user)
+                            a.pure-button.pure-u-1.button-warning(href="/cancel/" + order.uuid) Cancel Order
 

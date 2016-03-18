@@ -12,7 +12,6 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    console.log(queryInterface.);
     return queryInterface.create("Users", [{
       username: 'admin',
       password: 'test'
