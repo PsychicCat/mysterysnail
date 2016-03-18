@@ -30,8 +30,10 @@ block content
                             else
                                 p Shipping Status: Pending
                     .pure-u-1
-                        if(user)
+                        if(user && !order.isShipped)
                             a.pure-button.pure-u-1.pure-button-primary(href="/ship/" + order.uuid) Ship Order
-                        if(!user)
+                        if(user)
+                            a.pure-button.pure-u-1.button-secondary(href="/admin") Admin Dashboard
+                        if(!user && !order.isPaid)
                             a.pure-button.pure-u-1.button-warning(href="/cancel/" + order.uuid) Cancel Order
 

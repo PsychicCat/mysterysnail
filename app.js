@@ -17,6 +17,7 @@ var cancel = require('./routes/cancel');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var admin = require('./routes/admin');
+var ship = require('./routes/ship');
 
 var app = express();
 
@@ -53,6 +54,7 @@ app.use('/order', order);
 app.use('/track', track);
 app.use('/cancel', cancel);
 app.use('/admin', admin);
+app.use('/ship', ship);
 
 //check for new payments every minute and update status
 var updateOrderStatus = setInterval(updateOrders, 60000);

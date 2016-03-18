@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    h1 Admin Dashboard
     .content
         table.pure-table.pure-table-bordered.pure-table-striped
             thead
@@ -8,6 +9,7 @@ block content
                     th Order ID
                     th Recipient
                     th Payment Status
+                    th Shipping Status
                     th XMR Amount
                     th Created On
                     th Details
@@ -21,6 +23,7 @@ block content
                                 a.pure-button.pure-button-primary(href="http://moneroblocks.info/search/" + order.tx_hash) CONFIRMED
                         else
                             td AWAITING PAYMENT
+                        td= order.isShipped
                         td= order.dataValues.amount / 1e12
                         td= order.createdAt
                         td
