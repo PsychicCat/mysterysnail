@@ -15,7 +15,7 @@ If the wallet is hosted on an external host other than the web server, also incl
     sudo DOKKU_TAG=v0.4.14 bash bootstrap.sh
 Once the installation is complete, open a browser on your local machine and navigate to the server IP address to configure SSH key and virtual host settings. You will need to generate an SSH keypair on your local machine if you don't already have one. Here's a good walkthrough if needed: https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2
 
-### Create the app, configure a PostgreSQL database, add environment variables
+### Create the app, configure database, add environment variables
     
     # on your dokku host (server)
     dokku apps:create mysterysnail
