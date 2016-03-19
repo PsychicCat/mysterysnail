@@ -22,7 +22,7 @@ block content
                             textarea.pure-u-23-24(id="message" readonly)= order.message
                             if (order.isPaid)
                                 p Payment Status:
-                                    a(href="http://moneroblocks.info/search/" + order.tx_hash).pure-button.pure-button-primary CONFIRMED
+                                    a(href="http://moneroblocks.info/search/" + order.tx_hash).confirm.pure-button.pure-button-primary CONFIRMED
                             else
                                 p Payment Status: Awaiting Payment
                             if (order.isShipped)
@@ -33,7 +33,7 @@ block content
                         if(user && !order.isShipped)
                             a.pure-button.pure-u-1.pure-button-primary(href="/ship/" + order.uuid) Ship Order
                         if(user)
-                            a.pure-button.pure-u-1.button-secondary(href="/admin") Admin Dashboard
+                            a.pure-button.pure-u-1.button-secondary(href="/admin") Back To Admin Dashboard
                         if(!user && !order.isPaid)
                             a.pure-button.pure-u-1.button-warning(href="/cancel/" + order.uuid) Cancel Order
 
