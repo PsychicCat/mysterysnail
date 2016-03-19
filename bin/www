@@ -26,9 +26,10 @@ var server = http.createServer(app);
  * Sync Postgres database
  */
 
-models.sequelize.sync({force: true}).then(function(){
-  models.User.create({username: 'admin', password: 'test'});
+models.sequelize.sync().then(function(){
   server.listen(port, function(){
+    // find or create initial admin user
+    models.User.findOrCreate({where: {username: 'admin'}, defaults: {password: 'changethis'}});
     debug('Express server listening on port ' + server.address().port);
   })
 });

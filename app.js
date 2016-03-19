@@ -19,6 +19,7 @@ var logout = require('./routes/logout');
 var admin = require('./routes/admin');
 var ship = require('./routes/ship');
 var settings = require('./routes/settings');
+var terms = require('./routes/terms');
 
 var app = express();
 
@@ -45,7 +46,7 @@ app.use(jwt({
     }
     return null;
   }
-}).unless({path: ['/', '/order', '/track', '/cancel']}));
+}).unless({path: ['/', '/order', '/track', '/cancel', '/terms']}));
 
 // initialize routes
 app.use('/', routes);
@@ -57,6 +58,7 @@ app.use('/cancel', cancel);
 app.use('/admin', admin);
 app.use('/ship', ship);
 app.use('/settings', settings);
+app.use('/terms', terms);
 
 //check for new payments every minute and update status
 var updateOrderStatus = setInterval(updateOrders, 60000);

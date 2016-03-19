@@ -51,3 +51,8 @@ If everything is successful, you should see something like this when the applica
     
     =====> Application deployed:
            http://mysterysnail.brendan.click
+
+### After Deployment
+
+* Login as admin at `/login`.
+* Navigate to `Settings` to change password. The default login is username: `admin`, password: `changethis`.
