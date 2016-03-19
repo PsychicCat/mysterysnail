@@ -22,5 +22,6 @@ html
             a.pure-menu-link(href="/logout") Logout
     .content-wrapper
         block content
+    if !user
       .footer
         a(href="/terms") Terms of Service
