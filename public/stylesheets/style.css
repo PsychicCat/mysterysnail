@@ -107,3 +107,7 @@ span {
 .confirm {
   margin-left: 1em;
 }
+
+.error {
+  color: red;
+}

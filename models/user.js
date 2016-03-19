@@ -19,16 +19,22 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false,
         hooks: {
             beforeCreate: function(user, options) {
-                return _generateHash(user.password).then(function(hash){
-                    console.log(hash);
+                return user.generateHash(user.password).then(function(hash){
                     user.password = hash;
                 })
             }
         },
         instanceMethods: {
-           comparePassword: function(password, cb) {
+            comparePassword: function(password, cb) {
                 cb(null, bcrypt.compareSync(password, this.password));
-           }
+            },
+
+            generateHash: function(password) {
+                return new Promise((resolve, reject) => {
+                        resolve(bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null))
+                })
+            }
+
         },
         classMethods: {
             getAuthenticated: function(user, callback) {
@@ -66,10 +72,3 @@ module.exports = function(sequelize, DataTypes) {
     });
     return userSchema;
 };
-
-// generate hashed password
-function _generateHash(password) {
-    return new Promise((resolve, reject) => {
-        resolve(bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null))
-    });
-}

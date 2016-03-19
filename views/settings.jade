@@ -2,3 +2,16 @@ extends layout
 
 block content
     h1 Change Password
+    .content
+        form#settings.pure-form.pure-form-stacked(action="/settings" method="post")
+            fieldset
+                legend Change Password
+                .pure-g
+                    .pure-u-1
+                        label(for="oldPass") Current Password:
+                        input(type="password" id="oldPass" name="oldPass")
+                        label(for="newPass") New Password:
+                        input(type="password" id="newPass" name="newPass")
+                        button.pure-button.pure-button-primary(type="submit") Submit
+        if error
+            p.error= error.message

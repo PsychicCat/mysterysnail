@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    .login
+    .content
         fieldset
             legend Admin Login
             form#login.pure-form.pure-form-stacked(action="/login" method="post")
@@ -12,4 +12,3 @@ block content
                 button.pure-button.pure-button-primary(type="submit") Login
             if error
                 p.error= error.message
-            .pure-u-1-3

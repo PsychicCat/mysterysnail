@@ -23,7 +23,10 @@ block content
                                 a.pure-button.pure-button-primary(href="http://moneroblocks.info/search/" + order.tx_hash) CONFIRMED
                         else
                             td AWAITING PAYMENT
-                        td= order.isShipped
+                        if order.isShipped
+                            td Sent
+                        else
+                            td Pending
                         td= order.dataValues.amount / 1e12
                         td= order.createdAt
                         td
