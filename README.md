@@ -35,13 +35,18 @@ Once the installation is complete, open a browser on your local machine and navi
 By default, Dokku will make the app accessible on port 80. To change this to a specific port for I2P routing, use:
     
     dokku config:set mysterysnail DOKKU_NGINX_PORT=XXXX
-
-### Deploy the Application
     
+### Edit Terms of Service:
+
     # from your local machine, clone the repository
     git clone https://github.com/PsychicCat/mysterysnail.git
+
+* Navigate to the file at `/views/terms.jade` and replace the placeholder text.
+* Commit your changes to the local repository with `git add .` then `git commit -m "terms"`.
     
-    # add the dokku host as a remote - replace the XXX with the server IP
+### Deploy the Application
+    
+    # from your local machine, add the dokku host as a remote - replace the XXX with the server IP
     git remote add dokku dokku@XXX.XX.XX.XX:mysterysnail
     
     # finally, deploy the app!
