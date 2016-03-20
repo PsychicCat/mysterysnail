@@ -58,11 +58,24 @@ Example .env file:
     NODE_ENV=production
     DATABASE_URL=postgres://mysterysnail:PASSWORD@localhost:5432/mysterysnail // replace PASSWORD with the password entered when creating the mysterysnail postgres user
     PORT=XXXX // this is the port Node will host the app
-    
+
+### Edit Terms of Service:
+
+    # from your local machine, clone the repository
+    git clone https://github.com/PsychicCat/mysterysnail.git
+
+* Navigate to the file at `/views/terms.jade` and replace the placeholder text.
+* Commit your changes to the local repository with `git add .` then `git commit -m "terms"`.
+
 ### Start the app
 
     npm start
     
 You may want to launch the app in a tmux or screen session.
+
+### After Deployment
+
+* Login as admin at `/login`.
+* Navigate to `Settings` to change password. The default login is username: `admin`, password: `changethis`.
     
     
