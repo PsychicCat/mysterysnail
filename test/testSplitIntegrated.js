@@ -1,5 +1,5 @@
 'use strict';
-require('dotenv').load();
+require('dotenv').config();
 var Wallet = require('../lib/wallet');
 
 describe('split integrated address', function () {
