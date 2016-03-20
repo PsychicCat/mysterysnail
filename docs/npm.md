@@ -14,7 +14,7 @@ If the wallet is hosted on an external host other than the web server, also incl
     nvm install 5.9
     nvm use 5.9
     
-    # you can verify the installation was successful with
+    # verify the installation was successful with
     node -v
 
 ### Install PostgreSQL and configure database
@@ -26,21 +26,34 @@ If the wallet is hosted on an external host other than the web server, also incl
     # login to the postgres user account
     sudo -i -u postgres
     
-    # create a new role (user)
-    createuser --interactive
-    Enter name of role to add: mysterysnail
-    Shall the new role be a superuser? (y/n) n
-    Shall the new role be allowed to create databases? (y/n) y
-    Shall the new role be allowed to create more new roles? (y/n) n
+    # create a new role (database user)
+    createuser -P -s -e mysterysnail
     
     # create a new database
     createdb mysterysnail
+    
+    # exit out of the postgres user
     exit
     
-### Clone repository and install dependencies
+### Install dependencies and clone repository
 
+    sudo apt-get install build-essential
+    git clone https://github.com/PsychicCat/mysterysnail.git
+    cd mysterysnail
+    npm install
     
+### Configure environment variables 
+
+    # open example.env in text editor and edit example values, then save file
+    vim example.env
     
+    # rename example.env to .env
+    mv example.env .env
     
+### Start the app
+
+    npm start
+    
+You may want to launch the app in a tmux or screen session.
     
     
