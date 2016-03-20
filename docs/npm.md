@@ -50,6 +50,15 @@ If the wallet is hosted on an external host other than the web server, also incl
     # rename example.env to .env
     mv example.env .env
     
+Example .env file:
+
+    JWT_SECRET=suuuuupersecret // this should be a long random string
+    MONERO_HOST=http://XXX.XX.XX.XX // use http://127.0.0.1 if wallet is hosted on the same machine
+    MONERO_PORT=XXXXX // e.g. 18082, the port where simplewallet is bound to
+    NODE_ENV=production
+    DATABASE_URL=postgres://mysterysnail:PASSWORD@localhost:5432/mysterysnail // replace PASSWORD with the password entered when creating the mysterysnail postgres user
+    PORT=XXXX // this is the port Node will host the app
+    
 ### Start the app
 
     npm start
