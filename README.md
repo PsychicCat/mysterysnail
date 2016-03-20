@@ -6,7 +6,7 @@
 * [Using NPM][npm]
 
 ## Testing
-Tests are run via mocha. To run the tests, clone the repository and then:
+Tests are run via mocha. To run the tests, clone the repository, set your environment variables, and then:
     
     npm install
     npm test
